@@ -18,7 +18,7 @@ namespace Lombard
             productCategory = "Бытовая техника";
 
             // сумму за бытовую технику нужно вернуть через 2 года
-            DreturnDate = new DateTime(2, 0, 0);
+            DreturnDate = new DateTime(3, 1, 1);
         }
 
         public Appliances(string[] arr) // конструктор для чтения из файла
@@ -31,7 +31,7 @@ namespace Lombard
             productCategory = "Бытовая техника";
 
             // сумму за бытовую технику нужно вернуть через 2 года
-            DreturnDate = new DateTime(2, 0, 0);
+            DreturnDate = new DateTime(3, 1, 1);
 
         }
         public override double GetCost()

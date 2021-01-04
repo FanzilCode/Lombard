@@ -18,7 +18,9 @@ namespace Lombard
 
             commissions = cost * 0.15; // комиссионные составляют 15% от стоимости товара
             deliveryDate = DateTime.Now;
-            returnDate = new DateTime(deliveryDate.Year + product.DreturnDate.Year, deliveryDate.Month + product.DreturnDate.Month, deliveryDate.Day);
+            returnDate = new DateTime(deliveryDate.Year + product.DreturnDate.Year - 1, deliveryDate.Month + product.DreturnDate.Month - 1, deliveryDate.Day);
+
+            PrintCheck();
         }
 
         public PawnShop(IProduct product, Client client, string[] arr)
@@ -45,6 +47,26 @@ namespace Lombard
             return $"{product}\n" +
                 $"{client}\n" +
                 $"{cost} {commissions} {IsExpired} {deliveryDate} {returnDate}";
+        }
+
+        public int Refund()
+        {
+            client.PrintName();
+            Console.WriteLine($", вы хотите вернуть нам сумму в размере {cost} и получить свой залог обратно?\n1)Да\n2)Нет");
+            int choise = Convert.ToInt32(Console.ReadLine());
+
+            return choise;
+        }
+
+        public void PrintCheck()
+        {
+            Console.WriteLine($"Поздравляем! Вы получили {cost} рублей за залог.");
+            Console.WriteLine("Товар:");
+            product.PrintProduct();
+            Console.WriteLine("Клиент:");
+            Console.WriteLine(client);
+            Console.WriteLine($"Дата сдачи: {deliveryDate}\n" +
+                $"Необходимо вернуть до: {returnDate}\n");
         }
     }
 }

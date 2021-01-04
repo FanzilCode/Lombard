@@ -17,7 +17,7 @@ namespace Lombard
             productCategory = "Зимняя одежда";
 
             // сумму за зимнюю одежду нужно вернуть через пол года
-            DreturnDate = new DateTime(0, 6, 0);
+            DreturnDate = new DateTime(1, 7, 1);
         }
 
         public WinterClothing(string[] arr) // конструктор для чтения из файла
@@ -30,7 +30,7 @@ namespace Lombard
             productCategory = "Зимняя одежда";
 
             // сумму за зимнюю одежду нужно вернуть через пол года
-            DreturnDate = new DateTime(0, 6, 0);
+            DreturnDate = new DateTime(1, 7, 1);
         }
 
         public override double GetCost()

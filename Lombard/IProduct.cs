@@ -18,5 +18,7 @@ namespace Lombard
         DateTime DreturnDate { get; set; } // время, спустя которое нужно вернуть товар
 
         public abstract double GetCost();
+
+        public void PrintProduct();
     }
 }

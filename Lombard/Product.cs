@@ -22,5 +22,13 @@ namespace Lombard
             return $"{productCategory}#{name}#{notation}#{actualCost}#{maxCost}#{dateOfSaleToMaxCost}#{minCost}#{dateOfSaleToMinCost}";
         }
         public abstract double GetCost();
+
+        public void PrintProduct()
+        {
+            Console.WriteLine($"Категория товара: {productCategory}\n" +
+                $"Название товара: {name}\n" +
+                $"Примечание: {notation}\n" +
+                $"Цена товара: {actualCost}");
+        }
     }
 }

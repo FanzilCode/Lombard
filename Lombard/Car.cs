@@ -17,7 +17,7 @@ namespace Lombard
             productCategory = "Автомобиль";
 
             // сумму за автомобиль нужно вернуть через 5 лет
-            DreturnDate = new DateTime(5, 0, 0);
+            DreturnDate = new DateTime(6, 1, 1);
         }
 
         public Car(string[] arr) // конструктор для чтения из файла
@@ -30,7 +30,7 @@ namespace Lombard
             productCategory = "Автомобиль";
 
             // сумму за автомобиль нужно вернуть через 5 лет
-            DreturnDate = new DateTime(5, 0, 0);
+            DreturnDate = new DateTime(6, 1, 1);
         }
 
         public override double GetCost()

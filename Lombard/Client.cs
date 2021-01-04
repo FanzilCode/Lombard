@@ -24,23 +24,20 @@ namespace Lombard
         {
             return $"{lastName} {name} {middleName} {passNumber} {passSeries} {passDate}";
         }
-        public override bool Equals(object obj) // переопределяем метод Equals для перегрузки операторов == и !=
-        {
-            Client c = obj as Client;
-
-            if (c == null)
-                return false;
-            return (c.lastName == lastName) && (c.name == name) && (c.middleName == middleName) && (c.passNumber == passNumber)
-                && (c.passSeries == passSeries) && (c.passDate == passDate);
-        }
         // перегружаем операторы == и != для поиска клиентов в списке по данным
         public static bool operator ==(Client c1, Client c2)
         {
-            return c1.Equals(c2);
+            return (c1.lastName == c2.lastName) && (c1.name == c2.name) && (c1.middleName == c2.middleName) && (c1.passNumber == c2.passNumber)
+                && (c1.passSeries == c2.passSeries) && (c1.passDate == c2.passDate);
         }
         public static bool operator !=(Client c1, Client c2)
         {
-            return !c1.Equals(c2);
+            return !(c1 == c2);
+        }
+
+        public void PrintName() // печатаем ФИО клиента
+        {
+            Console.Write($"{lastName} {name} {middleName}, ");
         }
     }
 }
