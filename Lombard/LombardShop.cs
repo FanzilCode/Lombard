@@ -25,7 +25,7 @@ namespace Lombard
         public static void ReadOnFile(string path) // чтение из файла
         {
             string line;
-            using (StreamReader sr = new StreamReader(path, true))
+            using (StreamReader sr = new StreamReader(path))
             {
                 while ((line = sr.ReadLine()) != null)
                 {
