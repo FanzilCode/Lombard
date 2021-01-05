@@ -30,8 +30,8 @@ namespace Lombard
             // категория товара - бытовая техника
             productCategory = "Бытовая техника";
 
-            // сумму за бытовую технику нужно вернуть через 2 года
-            DreturnDate = new DateTime(3, 1, 1);
+            // сумму за бытовую технику нужно вернуть через 4 года
+            DreturnDate = new DateTime(5, 1, 1);
 
         }
         public override double GetCost()
@@ -40,7 +40,7 @@ namespace Lombard
                 return minCost;
             if (DateTime.Now <= dateOfSaleToMaxCost)
                 return maxCost;
-            return Math.Abs(maxCost * (1 - Math.Abs(DateTime.Now.Year - dateOfSaleToMaxCost.Year) * 0.1)); // каждый год цена будет уменьшаться на 10%
+            return Math.Abs(maxCost * (1 - Math.Abs(DateTime.Now.Year - dateOfSaleToMaxCost.Year) * 0.05)); // каждый год цена будет уменьшаться на 5%
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Lombard
 
         public void PrintName() // печатаем ФИО клиента
         {
-            Console.Write($"{lastName} {name} {middleName}, ");
+            Console.Write($"{lastName} {name} {middleName}");
         }
     }
 }

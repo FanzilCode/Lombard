@@ -29,8 +29,8 @@ namespace Lombard
             // категория товара - автомобиль
             productCategory = "Автомобиль";
 
-            // сумму за автомобиль нужно вернуть через 5 лет
-            DreturnDate = new DateTime(6, 1, 1);
+            // сумму за автомобиль нужно вернуть через 6 лет
+            DreturnDate = new DateTime(7, 1, 1);
         }
 
         public override double GetCost()
@@ -39,7 +39,7 @@ namespace Lombard
                 return minCost;
             if (DateTime.Now <= dateOfSaleToMaxCost)
                 return maxCost;
-            return Math.Abs(maxCost * (1 - Math.Abs(DateTime.Now.Year - dateOfSaleToMaxCost.Year) * 0.05)); // каждый год цена будет уменьшаться на 5%
+            return Math.Abs(maxCost * (1 - Math.Abs(DateTime.Now.Year - dateOfSaleToMaxCost.Year) * 0.06)); // каждый год цена будет уменьшаться на 6%
         }
     }
 }

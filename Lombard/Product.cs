@@ -19,7 +19,7 @@ namespace Lombard
 
         public override string ToString() // переопределяем метод ToString() для сохранения в файл
         {
-            return $"{productCategory}#{name}#{notation}#{actualCost}#{maxCost}#{dateOfSaleToMaxCost}#{minCost}#{dateOfSaleToMinCost}";
+            return $"{productCategory}%{name}%{notation}%{actualCost}%{maxCost}%{dateOfSaleToMaxCost.ToShortDateString()}%{minCost}%{dateOfSaleToMinCost.ToShortDateString()}";
         }
         public abstract double GetCost();
 

@@ -16,10 +16,12 @@ namespace Lombard
         {
             this.product = product; this.client = client; this.cost = cost; IsExpired = false;
 
-            commissions = cost * 0.15; // комиссионные составляют 15% от стоимости товара
+            commissions = cost * 0.05; // комиссионные составляют 5% от стоимости товара
             deliveryDate = DateTime.Now;
             returnDate = new DateTime(deliveryDate.Year + product.DreturnDate.Year - 1, deliveryDate.Month + product.DreturnDate.Month - 1, deliveryDate.Day);
 
+
+            Console.WriteLine($"Поздравляем! Вы получили {cost} рублей за залог.");
             PrintCheck();
         }
 
@@ -60,11 +62,13 @@ namespace Lombard
 
         public void PrintCheck()
         {
-            Console.WriteLine($"Поздравляем! Вы получили {cost} рублей за залог.");
-            Console.WriteLine("Товар:");
-            product.PrintProduct();
+
             Console.WriteLine("Клиент:");
             Console.WriteLine(client);
+
+            Console.WriteLine("Товар:");
+            product.PrintProduct();
+
             Console.WriteLine($"Дата сдачи: {deliveryDate}\n" +
                 $"Необходимо вернуть до: {returnDate}\n");
         }

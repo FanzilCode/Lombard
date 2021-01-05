@@ -7,7 +7,7 @@ namespace Lombard
 {
     class LombardShop
     {
-        static List<PawnShop> pawnShop = new List<PawnShop>(); // связка товаров и клиентов
+        static List<PawnShop> pawnShop = new List<PawnShop>(); // ломбард
         public static void SaveToFile(string path) // сохранение в файл
         {
             string strings = "";
@@ -17,7 +17,7 @@ namespace Lombard
             }
             strings = strings.Trim();
 
-            using(StreamWriter sw = new StreamWriter(path))
+            using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.Write(strings);
             }
@@ -29,7 +29,7 @@ namespace Lombard
             {
                 while ((line = sr.ReadLine()) != null)
                 {
-                    string[] arr = line.Split("#");
+                    string[] arr = line.Split("%");
                     IProduct product;
                     switch (arr[0])
                     {
@@ -43,9 +43,9 @@ namespace Lombard
                                 product = new Car(arr);
                                 break;
                             }
-                        case "Зимняя одежда":
+                        case "Недвижимость":
                             {
-                                product = new WinterClothing(arr);
+                                product = new Realty(arr);
                                 break;
                             }
                         default:
@@ -59,32 +59,6 @@ namespace Lombard
                     arr = sr.ReadLine().Split();
                     pawnShop.Add(new PawnShop(product, client, arr));
                 }
-            }
-        }
-
-        public static void LogInAsClient() // Вход/регистрация как клиент
-        {
-            Console.Write("Введите свои данные:\nФИО: ");
-            string strings = "";
-            strings += Console.ReadLine().Trim() + " ";
-            Console.Write("Серия паспорта: ");
-            strings += Console.ReadLine().Trim() + " ";
-            Console.Write("Номер паспорта: ");
-            strings += Console.ReadLine().Trim() + " ";
-            Console.Write("Дата выдачи паспорта: ");
-            strings += Console.ReadLine().Trim();
-
-            Client client = new Client(strings);
-
-            Console.WriteLine("Выберите:\n1) Хочу вернуть вам деньги и забрать свой залог\n2) Хочу получить денежные средства под залог определённого товара");
-
-            int choise = Convert.ToInt32(Console.ReadLine());
-
-            if (choise == 1)
-                Refund(client);
-            else
-            {
-                GetMoney(client);
             }
         }
         public static void Refund(Client client)
@@ -122,13 +96,13 @@ namespace Lombard
         public static void GetMoney(Client client)
         {
             client.PrintName();
-            Console.WriteLine("пожалуйста, введите данные о товаре, который вы хотите оставить в залог:");
-            Console.WriteLine("Выберите категорию товара:\n1) Зимняя одежда\t2) Автомобиль\t3) Бытовая техника");
+            Console.WriteLine(", пожалуйста, введите данные о товаре, который вы хотите оставить в залог:");
+            Console.WriteLine("Выберите категорию товара:\n1) Недвижимость\t2) Автомобиль\t3) Бытовая техника");
             int choise = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите название товара: ");
             string name = Console.ReadLine();
             Console.Write("Примечания: "); string notation = Console.ReadLine();
-            Console.Write("Введите цену товара и покажите чек о покупке, пожалуйста: "); // что не обманули :)
+            Console.Write("Введите цену товара: ");
             double cost = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine($"Отлично, комиссионные будут составлять {cost * 0.15} руб, поэтому мы можем выдать вам {0.85 * cost} руб.");
@@ -145,7 +119,7 @@ namespace Lombard
                 {
                     case 1:
                         {
-                            product = new WinterClothing(name, notation, cost);
+                            product = new Realty(name, notation, cost);
                             break;
                         }
                     case 2:
@@ -166,18 +140,35 @@ namespace Lombard
         static void Main(string[] args)
         {
             string path = @"PawnShop.txt";
-            DirectoryInfo dirInfo = new DirectoryInfo(path);
             ReadOnFile(path);
+            int choise = 1;
+            while (choise == 1 || choise == 2)
+            {
+                Console.WriteLine("Выберите:\n1) Хочу вернуть вам деньги и забрать свой залог\n2) Хочу получить денежные средства под залог определённого товара\n3) Выход");
+                choise = Convert.ToInt32(Console.ReadLine());
+                if (choise == 1 || choise == 2)
+                {
+                    Console.Write("Введите свои данные:\nФИО: ");
+                    string strings = "";
+                    strings += Console.ReadLine().Trim() + " ";
+                    Console.Write("Серия паспорта: ");
+                    strings += Console.ReadLine().Trim() + " ";
+                    Console.Write("Номер паспорта: ");
+                    strings += Console.ReadLine().Trim() + " ";
+                    Console.Write("Дата выдачи паспорта: ");
+                    strings += Console.ReadLine().Trim();
 
-            Console.WriteLine("Здравствуйте! Пожалуйста, выберите способ выхода:\n1) Я клиент\t2) Я администратор");
-
-            int choise = Convert.ToInt32(Console.ReadLine());
-
-            if (choise == 1)
-                LogInAsClient();
-
+                    Client client = new Client(strings);
+                    if (choise == 1)
+                        Refund(client);
+                    else
+                    {
+                        GetMoney(client);
+                    }
+                }
+            }
             SaveToFile(path);
-
         }
+
     }
 }
